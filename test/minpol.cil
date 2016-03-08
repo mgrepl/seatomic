@@ -1,0 +1,274 @@
+(mls false)
+(handleunknown deny)
+
+(policycap "network_peer_controls")
+(policycap "open_perms")
+
+(sensitivity s0)
+(sensitivityorder (s0))
+(category c0)
+(categoryorder (c0))
+(sensitivitycategory s0 (c0))
+(level systemhigh (s0 (c0)))
+(level systemlow (s0))
+(level mls_systemhigh (s0 (c0)))
+
+(sid kernel)
+(sid security)
+(sid unlabeled)
+(sid fs)
+(sid file)
+(sid file_labels)
+(sid init)
+(sid any_socket)
+(sid port)
+(sid netif)
+(sid netmsg)
+(sid node)
+(sid igmp_packet)
+(sid icmp_socket)
+(sid tcp_socket)
+(sid sysctl_modprobe)
+(sid sysctl)
+(sid sysctl_fs)
+(sid sysctl_kernel)
+(sid sysctl_net)
+(sid sysctl_net_unix)
+(sid sysctl_vm)
+(sid sysctl_dev)
+(sid kmod)
+(sid policy)
+(sid scmp_packet)
+(sid devnull)
+
+(sidorder (kernel security unlabeled fs file file_labels init any_socket port netif netmsg node igmp_packet icmp_socket tcp_socket sysctl_modprobe sysctl sysctl_fs sysctl_kernel sysctl_net sysctl_net_unix sysctl_vm sysctl_dev kmod policy scmp_packet devnull ))
+
+(class security (compute_av compute_create compute_member check_context load_policy compute_relabel compute_user setenforce setbool setsecparam setcheckreqprot read_policy validate_trans ))
+
+(class process (fork transition sigchld sigkill sigstop signull signal ptrace getsched setsched getsession getpgid setpgid getcap setcap share getattr setexec setfscreate noatsecure siginh setrlimit rlimitinh dyntransition setcurrent execmem execstack execheap setkeycreate setsockcreate ))
+
+(class system (ipc_info syslog_read syslog_mod syslog_console module_request ))
+
+(class capability (chown dac_override dac_read_search fowner fsetid kill setgid setuid setpcap linux_immutable net_bind_service net_broadcast net_admin net_raw ipc_lock ipc_owner sys_module sys_rawio sys_chroot sys_ptrace sys_pacct sys_admin sys_boot sys_nice sys_resource sys_time sys_tty_config mknod lease audit_write audit_control setfcap ))
+
+(class filesystem (mount remount unmount getattr relabelfrom relabelto associate quotamod quotaget ))
+
+(class file (ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access open execmod execute_no_trans entrypoint ))
+
+(class dir (ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access open execmod add_name remove_name reparent search rmdir ))
+
+(class fd (use ))
+
+(class lnk_file (ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access open execmod ))
+
+(class chr_file (ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access open execmod ))
+
+(class blk_file (ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access open execmod ))
+
+(class sock_file (ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access open execmod ))
+
+(class fifo_file (ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access open execmod ))
+
+(class socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class tcp_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind node_bind name_connect ))
+
+(class udp_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind node_bind ))
+
+(class rawip_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind node_bind ))
+
+(class node (recvfrom sendto ))
+
+(class netif (ingress egress ))
+
+(class netlink_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class packet_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class key_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class unix_stream_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind connectto ))
+
+(class unix_dgram_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class sem (create destroy getattr setattr read write associate unix_read unix_write ))
+
+(class msg (send receive ))
+
+(class msgq (create destroy getattr setattr read write associate unix_read unix_write enqueue ))
+
+(class shm (create destroy getattr setattr read write associate unix_read unix_write lock ))
+
+(class ipc (create destroy getattr setattr read write associate unix_read unix_write ))
+
+(class netlink_route_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind nlmsg_read nlmsg_write ))
+
+(class netlink_tcpdiag_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind nlmsg_read nlmsg_write ))
+
+(class netlink_nflog_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_xfrm_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind nlmsg_read nlmsg_write ))
+
+(class netlink_selinux_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_iscsi_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_audit_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind nlmsg_read nlmsg_write nlmsg_relay nlmsg_readpriv nlmsg_tty_audit ))
+
+(class netlink_fib_lookup_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_connector_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_netfilter_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_dnrt_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class association (sendto recvfrom setcontext polmatch ))
+
+(class netlink_kobject_uevent_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_generic_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_scsitransport_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_rdma_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class netlink_crypto_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class appletalk_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind ))
+
+(class packet (send recv relabelto forward_in forward_out ))
+
+(class key (view read write search link setattr create ))
+
+(class dccp_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind node_bind name_connect ))
+
+(class memprotect (mmap_zero ))
+
+(class peer (recv ))
+
+(class capability2 (mac_override mac_admin syslog wake_alarm block_suspend audit_read ))
+
+(class kernel_service (use_as_override create_files_as ))
+
+(class tun_socket (ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind attach_queue ))
+
+(class binder (impersonate call set_context_mgr transfer ))
+
+
+(classorder (security process system capability filesystem file dir fd lnk_file chr_file blk_file sock_file fifo_file socket tcp_socket udp_socket rawip_socket node netif netlink_socket packet_socket key_socket unix_stream_socket unix_dgram_socket sem msg msgq shm ipc netlink_route_socket netlink_tcpdiag_socket netlink_nflog_socket netlink_xfrm_socket netlink_selinux_socket netlink_iscsi_socket netlink_audit_socket netlink_fib_lookup_socket netlink_connector_socket netlink_netfilter_socket netlink_dnrt_socket association netlink_kobject_uevent_socket netlink_generic_socket netlink_scsitransport_socket netlink_rdma_socket netlink_crypto_socket appletalk_socket packet key dccp_socket memprotect peer capability2 kernel_service tun_socket binder ))
+
+(type base_t)
+(role base_r)
+(roletype base_r base_t)
+(allow base_t base_t(security (all)))
+(allow base_t base_t(process (all)))
+(allow base_t base_t(system (all)))
+(allow base_t base_t(capability (all)))
+(allow base_t base_t(filesystem (all)))
+(allow base_t base_t(file (all)))
+(allow base_t base_t(dir (all)))
+(allow base_t base_t(fd (all)))
+(allow base_t base_t(lnk_file (all)))
+(allow base_t base_t(chr_file (all)))
+(allow base_t base_t(blk_file (all)))
+(allow base_t base_t(sock_file (all)))
+(allow base_t base_t(fifo_file (all)))
+(allow base_t base_t(socket (all)))
+(allow base_t base_t(tcp_socket (all)))
+(allow base_t base_t(udp_socket (all)))
+(allow base_t base_t(rawip_socket (all)))
+(allow base_t base_t(node (all)))
+(allow base_t base_t(netif (all)))
+(allow base_t base_t(netlink_socket (all)))
+(allow base_t base_t(packet_socket (all)))
+(allow base_t base_t(key_socket (all)))
+(allow base_t base_t(unix_stream_socket (all)))
+(allow base_t base_t(unix_dgram_socket (all)))
+(allow base_t base_t(sem (all)))
+(allow base_t base_t(msg (all)))
+(allow base_t base_t(msgq (all)))
+(allow base_t base_t(shm (all)))
+(allow base_t base_t(ipc (all)))
+(allow base_t base_t(netlink_route_socket (all)))
+(allow base_t base_t(netlink_tcpdiag_socket (all)))
+(allow base_t base_t(netlink_nflog_socket (all)))
+(allow base_t base_t(netlink_xfrm_socket (all)))
+(allow base_t base_t(netlink_selinux_socket (all)))
+(allow base_t base_t(netlink_iscsi_socket (all)))
+(allow base_t base_t(netlink_audit_socket (all)))
+(allow base_t base_t(netlink_fib_lookup_socket (all)))
+(allow base_t base_t(netlink_connector_socket (all)))
+(allow base_t base_t(netlink_netfilter_socket (all)))
+(allow base_t base_t(netlink_dnrt_socket (all)))
+(allow base_t base_t(association (all)))
+(allow base_t base_t(netlink_kobject_uevent_socket (all)))
+(allow base_t base_t(netlink_generic_socket (all)))
+(allow base_t base_t(netlink_scsitransport_socket (all)))
+(allow base_t base_t(netlink_rdma_socket (all)))
+(allow base_t base_t(netlink_crypto_socket (all)))
+(allow base_t base_t(appletalk_socket (all)))
+(allow base_t base_t(packet (all)))
+(allow base_t base_t(key (all)))
+(allow base_t base_t(dccp_socket (all)))
+(allow base_t base_t(memprotect (all)))
+(allow base_t base_t(peer (all)))
+(allow base_t base_t(capability2 (all)))
+(allow base_t base_t(kernel_service (all)))
+(allow base_t base_t(tun_socket (all)))
+(allow base_t base_t(binder (all)))
+
+(user user_u)
+(userrole user_u base_r)
+(userlevel user_u (s0))
+(userrange user_u ((s0) systemhigh))
+
+(context minpol_isid (user_u base_r base_t ((s0)(s0))))
+(sidcontext kernel minpol_isid)
+(sidcontext security minpol_isid)
+(sidcontext unlabeled minpol_isid)
+(sidcontext fs minpol_isid)
+(sidcontext file minpol_isid)
+(sidcontext file_labels minpol_isid)
+(sidcontext init minpol_isid)
+(sidcontext any_socket minpol_isid)
+(sidcontext port minpol_isid)
+(sidcontext netif minpol_isid)
+(sidcontext netmsg minpol_isid)
+(sidcontext node minpol_isid)
+(sidcontext igmp_packet minpol_isid)
+(sidcontext icmp_socket minpol_isid)
+(sidcontext tcp_socket minpol_isid)
+(sidcontext sysctl_modprobe minpol_isid)
+(sidcontext sysctl minpol_isid)
+(sidcontext sysctl_fs minpol_isid)
+(sidcontext sysctl_kernel minpol_isid)
+(sidcontext sysctl_net minpol_isid)
+(sidcontext sysctl_net_unix minpol_isid)
+(sidcontext sysctl_vm minpol_isid)
+(sidcontext sysctl_dev minpol_isid)
+(sidcontext kmod minpol_isid)
+(sidcontext policy minpol_isid)
+(sidcontext scmp_packet minpol_isid)
+(sidcontext devnull minpol_isid)
+
+(fsuse xattr "ext2" minpol_isid)
+(fsuse xattr "ext3" minpol_isid)
+(fsuse xattr "ext4" minpol_isid)
+(fsuse xattr "jfs" minpol_isid)
+(fsuse xattr "xfs" minpol_isid)
+(fsuse xattr "reiserfs" minpol_isid)
+(fsuse xattr "jffs2" minpol_isid)
+(fsuse xattr "gfs2" minpol_isid)
+(fsuse xattr "lustre" minpol_isid)
+(fsuse task "eventpollfs" minpol_isid)
+(fsuse task "pipefs" minpol_isid)
+(fsuse task "sockfs" minpol_isid)
+(fsuse trans "mqueue" minpol_isid)
+(fsuse trans "devpts" minpol_isid)
+(fsuse trans "hugetlbfs" minpol_isid)
+(fsuse trans "tmpfs" minpol_isid)
+(fsuse trans "shm" minpol_isid)
+(genfscon "proc" "/" minpol_isid)
+(filecon "/" dir minpol_isid)
+(filecon "/.*" any minpol_isid)
